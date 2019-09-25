@@ -717,11 +717,12 @@ class _SeekBarState extends State<SeekBar> {
     return widget._buildSemanticsWrapper(
       context: context,
       child: Container(
+        color: Colors.transparent,
         // height: totalHeight,
         //下面的可以设置约束
-        constraints: const BoxConstraints(
+        constraints: BoxConstraints(
           minWidth: double.infinity,
-          minHeight: 10,
+          minHeight: indicatorRadius == null ? 10 : indicatorRadius * 2.5,
         ),
         child: CustomPaint(
           painter: _SeekBarPainter(
@@ -894,11 +895,16 @@ class _SeekBarState extends State<SeekBar> {
   Widget build(BuildContext context) {
     if (widget.isCanTouch) {
       return GestureDetector(
-          onPanDown: _onPanDown,
-          onPanUpdate: _onPanUpdate,
-          onPanEnd: _onPanEnd,
-          onTapUp: _onTapUp,
-          child: _buildSeekBar(context, _value, widget.min, widget.max));
+        onPanDown: _onPanDown,
+        onPanUpdate: _onPanUpdate,
+        onPanEnd: _onPanEnd,
+        onTapUp: _onTapUp,
+        child: Container(
+          color: Colors.transparent,
+          padding: EdgeInsets.only(left: indicatorRadius, right: indicatorRadius),
+          child: _buildSeekBar(context, _value, widget.min, widget.max),
+        ),
+      );
     } else {
       return _buildSeekBar(context, _value, widget.min, widget.max);
     }
