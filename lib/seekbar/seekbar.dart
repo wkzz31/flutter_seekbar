@@ -901,7 +901,7 @@ class _SeekBarState extends State<SeekBar> {
         onTapUp: _onTapUp,
         child: Container(
           color: Colors.transparent,
-          padding: EdgeInsets.only(left: indicatorRadius, right: indicatorRadius),
+          padding: EdgeInsets.only(left: indicatorRadius ?? 0, right: indicatorRadius ?? 0),
           child: _buildSeekBar(context, _value, widget.min, widget.max),
         ),
       );
