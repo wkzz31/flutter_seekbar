@@ -372,7 +372,7 @@ class _SeekBarPainter extends CustomPainter {
           if (match.length > 0) {
             SectionTextModel matchModel = match.first;
             point = matchModel.text;
-          } else if (i == value * sectionCount &&
+          } else if (i == (value * sectionCount).round() &&
               afterDragShowSectionText != null &&
               afterDragShowSectionText) {
           } else {
@@ -383,7 +383,7 @@ class _SeekBarPainter extends CustomPainter {
         Size textSize = getTextWidth(text: point, fontsize: sectionTextSize);
         Color textColor = sectionTextColor;
         if (sectionSelectTextColor != Colors.transparent &&
-            i == value * sectionCount) {
+            i == (value * sectionCount).round()) {
           textColor = sectionSelectTextColor;
         }
         //为了计算文字和size的偏差
@@ -433,7 +433,7 @@ class _SeekBarPainter extends CustomPainter {
       if (sectionCount <= 1) return;
       for (var i = 0; i < sectionCount + 1; i++) {
         paint.color =
-            i > value * sectionCount ? sectionUnSelecteColor : sectionColor;
+            i > (value * sectionCount).round() ? sectionUnSelecteColor : sectionColor;
 
         canvas.drawCircle(
             Offset(i * size.width / sectionCount, size.height / 2),
